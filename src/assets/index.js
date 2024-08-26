@@ -13,6 +13,7 @@ import figma from "./tech/figma.png";
 import git from "./tech/git.png";
 import html from "./tech/html.png";
 import javascript from "./tech/javascript.png";
+import python from "./tech/python.png";
 import mongodb from "./tech/mongodb.png";
 import nodejs from "./tech/nodejs.png";
 import reactjs from "./tech/reactjs.png";
@@ -20,6 +21,10 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import cplus from "./tech/cplus.png";
+import express from "./tech/expresss.png";
+import csharp from "./tech/Cshapp.png";
+import unity from "./tech/Unity.png";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -59,4 +64,9 @@ export {
   carrent,
   jobit,
   tripguide,
+  python,
+  cplus,
+  express,
+  csharp,
+  unity,
 };

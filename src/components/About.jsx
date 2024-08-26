@@ -44,11 +44,15 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        As a versatile professional with expertise in web development, game
+        development, and AI engineering, I specialize in creating innovative
+        solutions that bridge the gap between technology and user experience. My
+        diverse skill set allows me to seamlessly integrate cutting-edge AI
+        techniques into web and game environments, ensuring that the products I
+        develop are not only functional but also intelligent and engaging.
+        Whether it's crafting responsive web applications, immersive game
+        experiences, or AI-driven solutions, my passion for technology drives me
+        to continuously push the boundaries of what's possible.
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10">
