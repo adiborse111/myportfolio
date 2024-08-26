@@ -18,8 +18,50 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {};
-  const handleSubmit = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // template_6nzah2e
+    // service_groowwp
+    // E-ItbHBLxbgUrpxN6
+
+    emailjs
+      .send(
+        "service_groowwp",
+        "template_6nzah2e",
+        {
+          from_name: form.name,
+          to_name: "Aditya",
+          from_email: form.email,
+          to_email: "adi.borse111@gmail.com",
+          message: form.message,
+        },
+        "E-ItbHBLxbgUrpxN6"
+      )
+      .then(
+        () => {
+          setLoading(false);
+          alert("The message has been sent.");
+
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.log(error);
+          alert("Something went wrong.");
+        }
+      );
+  };
 
   return (
     <div className="xl:mt-12 xl:flex-row flex flex-col-reverse gap-10 overflow-hidden">
@@ -72,14 +114,14 @@ const Contact = () => {
             type="submit"
             className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary"
           >
-            {loading ? 'Sending...' : 'Send'}
+            {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]" 
+        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
         <EarthCanvas />
       </motion.div>
