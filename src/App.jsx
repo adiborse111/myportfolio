@@ -11,7 +11,6 @@ import {
 } from "./components";
 import Stars from "./components/canvas/Stars";
 
-
 const App = () => {
   return (
     <BrowserRouter>
@@ -21,14 +20,11 @@ const App = () => {
           <Hero />
         </div>
         <About />
-        <Experience />
         <Tech />
         <Works />
-        <Feedbacks />
         <div className="relative z-0">
           <Contact />
           <Stars />
-          
         </div>
       </div>
     </BrowserRouter>
