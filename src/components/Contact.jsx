@@ -7,8 +7,13 @@ import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
+import { VerifaliaRestClient } from "verifalia";
+
 const Contact = () => {
   const formRef = useRef();
+
+  // const username = String(import.meta.env.username);
+  // const password = String(import.meta.env.password);
 
   const [form, setForm] = useState({
     name: "",
@@ -17,6 +22,75 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const verifalia = new VerifaliaRestClient({
+    username: "fa46e222f3704c52a2bda9fcc2a77e1d",
+    password: "6Ev@vxKMQEuCF8M",
+  });
+
+  const verifyEmail = async () => {
+    if (validateEmail(form.email)) {
+      const result = await verifalia.emailValidations.submit(form.email);
+
+      // At this point the address has been validated: let's print
+      // its email validation result to the console.
+
+      const entry = result.entries[0];
+      const newResult = entry.classification;
+
+      if (newResult === "Undeliverable") {
+        alert("Invalid email id.");
+        setLoading(false);
+      } else {
+        // template_6nzah2e
+        // service_groowwp
+        // E-ItbHBLxbgUrpxN6
+        emailjs
+          .send(
+            "service_groowwp",
+            "template_6nzah2e",
+            {
+              from_name: form.name,
+              to_name: "Aditya",
+              from_email: form.email,
+              to_email: "adi.borse111@gmail.com",
+              message: form.message,
+            },
+            "E-ItbHBLxbgUrpxN6"
+          )
+          .then(
+            () => {
+              setLoading(false);
+              alert("The message has been sent.");
+
+              setForm({
+                name: "",
+                email: "",
+                message: "",
+              });
+            },
+            (error) => {
+              setLoading(false);
+              console.log(error);
+              alert("Something went wrong.");
+            }
+          );
+      }
+
+      console.log(`${entry.classification}`);
+
+      // Prints out something like:
+      // Deliverable (Success)
+    } else {
+      alert("invalid email");
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,40 +101,7 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // template_6nzah2e
-    // service_groowwp
-    // E-ItbHBLxbgUrpxN6
-
-    emailjs
-      .send(
-        "service_groowwp",
-        "template_6nzah2e",
-        {
-          from_name: form.name,
-          to_name: "Aditya",
-          from_email: form.email,
-          to_email: "adi.borse111@gmail.com",
-          message: form.message,
-        },
-        "E-ItbHBLxbgUrpxN6"
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("The message has been sent.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error);
-          alert("Something went wrong.");
-        }
-      );
+    verifyEmail();
   };
 
   return (
